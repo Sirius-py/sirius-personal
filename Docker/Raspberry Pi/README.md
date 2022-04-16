@@ -1,5 +1,5 @@
 # Pasos para instalar Docker en una Raspberry PI 2/3 corriendo raspbian
-Este es un instructivo para un tutorial en Youtube https://youtu.be/pliGG1M87W8
+Tutorial en Youtube (PeladoNerd): https://youtu.be/pliGG1M87W8
 
 ### 1. Descargar e instalar raspbian en tu micro SD
    * Descargar https://downloads.raspberrypi.org/raspbian_lite_latest
