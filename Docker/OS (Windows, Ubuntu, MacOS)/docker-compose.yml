@@ -1,7 +1,19 @@
 version: "3.8"
 services:
 
-##----------------------------NODE-RED----------------------------------
+#------------------------PORTAINER-------------------------------------
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart:  always
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /home/chris/Documentos/Docker/docker.sock:/var/run/docker.sock
+      - ./portainer-data:/data
+    ports:
+      - 9000:9000
+#----------------------------NODE-RED----------------------------------
   nodered:
     container_name: Node-red
     image: nodered/node-red:latest
@@ -10,7 +22,7 @@ services:
       - "1880:1880" 
     volumes:
       - /home/chris/Documentos/Docker/nodered:/data
-##----------------------------MOSQUITTO----------------------------------
+#----------------------------MOSQUITTO--------------------------------
   mqtt:
     container_name: mosquitto
     image: eclipse-mosquitto:1.6
