@@ -1,32 +1,65 @@
-version: "3.8"
+version: "2"
 services:
 
-##----------------------------NODE-RED----------------------------------
+#---------------------------SAMBA---------------------------------
+  samba:
+    image: dperson/samba:rpi
+    restart: always
+    command: '-u "pi;password" -s "media;/media;yes;no"'
+    stdin_open: true
+    tty: true
+    ports:
+      - 139:130
+      - 445:445
+    volumes:
+      - /home/pi/media:/media
+#------------------------RTORRENT (CORTESÍA DEL PELADO)-----------
+  rtorrent:
+    image: pablokbs/rutorrent-armhf
+    ports:
+      - 80:80
+      - 51413:51413
+      - 6881:6881/udp
+    volumes:
+      - /home/pi/torrents-config/rtorrents:/config/rtorrent
+      - /home/pi/downloads:/downloads
+    restart: always
+#-----------------------DUCKDNS----------------------------------
+  duckdns:
+    image: lscr.io/linuxserver/duckdns
+    container_name: duckdns
+    environment:
+      - TZ=America/Colombia
+      - TOKEN=daa034b7-046f-4008-b840-0b9833182928
+      - LOG_FILE=flase
+    restart: unless-stopped
+#------------------------PORTAINER------------------------------
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart:  always
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./portainer-data:/data
+    ports:
+      - 9000:9000
+#----------------------------NODE-RED---------------------------
   nodered:
     container_name: Node-red
     image: nodered/node-red:latest
+    user: "1000:1000"
     restart: always
     ports:
-      - "1880:1880" 
+      - 1880:1880
     volumes:
-      - /home/chris/Documentos/Docker/nodered:/data
-##----------------------------MOSQUITTO----------------------------------
-  mqtt:
-    container_name: mosquitto
-    image: eclipse-mosquitto:1.6
-    restart: always
-    ports:
-      - "1883:1883"
-      - "9001:9001" 
-    volumes:
-      - /home/chris/Documentos/Docker/mosquitto/config:/mqtt/config
-      - /home/chris/Documentos/Docker/mosquitto/data:/mqtt/data
-      - /home/chris/Documentos/Docker/mosquitto/log:/mqtt/log
+      - "/mnt/external/nr-personal:/data"
+    networks:
+      - public
 volumes:
-  config:
-  data:
-  log:
-
-
+  nr-personal:
+networks:
+  public:
 
 
