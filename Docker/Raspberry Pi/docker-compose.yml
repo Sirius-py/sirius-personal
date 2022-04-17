@@ -45,6 +45,18 @@ services:
       - ./portainer-data:/data
     ports:
       - 9000:9000
+#----------------------------MOSQUITTO--------------------------------
+  mqtt:
+    container_name: mosquitto
+    image: eclipse-mosquitto:1.6
+    restart: always
+    ports:
+      - "1883:1883"
+      - "9001:9001" 
+    volumes:
+      - /home/pi/Documentos/Docker/mosquitto/config:/mqtt/config
+      - /home/pi/Documentos/Docker/mosquitto/data:/mqtt/data
+      - /home/pi/Documentos/Docker/mosquitto/log:/mqtt/log
 #----------------------------NODE-RED---------------------------
   nodered:
     container_name: Node-red
