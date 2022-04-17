@@ -13,6 +13,24 @@ services:
       - 445:445
     volumes:
       - /home/pi/media:/media
+#--------------------------PiHole---------------------------------
+pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp" 
+      - "80:80/tcp"
+    environment:
+      TZ: 'America/Colombia/Medellin'
+      WEBPASSWORD: 'raspilarios'
+    volumes:
+      - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'    
+    cap_add:
+      - NET_ADMIN       
+    restart: unless-stopped
 #------------------------RTORRENT (CORTESÍA DEL PELADO)-----------
   rtorrent:
     image: pablokbs/rutorrent-armhf
@@ -54,9 +72,9 @@ services:
       - "1883:1883"
       - "9001:9001" 
     volumes:
-      - /home/pi/Documentos/Docker/mosquitto/config:/mqtt/config
-      - /home/pi/Documentos/Docker/mosquitto/data:/mqtt/data
-      - /home/pi/Documentos/Docker/mosquitto/log:/mqtt/log
+      - /home/pi/Docker/mosquitto/config:/mqtt/config
+      - /home/pi/Docker/mosquitto/data:/mqtt/data
+      - /home/pi/Docker/mosquitto/log:/mqtt/log
 #----------------------------NODE-RED---------------------------
   nodered:
     container_name: Node-red
