@@ -83,3 +83,11 @@ services:
 ```
 docker-compose up -d
 ```
+
+### 10. Comandos a tener en cuenta
+```
+sudo chmod 777 ./folder/ #Para dar permisos de administrador a la carpeta
+```
+```
+cp <file> <direccion>  #Para copiar un archivo y pegarlo en otra dirección
+```
