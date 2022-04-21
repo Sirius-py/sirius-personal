@@ -13,5 +13,5 @@ Tutorial: https://youtu.be/bf0wHsiLuuA
 
 ### Acceder al servidor Samba
    1) Ir a Red, luego hacer click derecho y luego click a "Conectar a unidad de red"
-   2) Al estar ahí, simplemente escribes la dirección del servidor, ej: \\192.168.0.10\MEDIA
- 
+   2) Al estar ahí, simplemente escribes la dirección del servidor, 
+   3) ej: \ \ 192.168.0.10\ MEDIA
