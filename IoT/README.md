@@ -1,16 +1,11 @@
-# Arduino code
-Este código fue escrito en Visual Studio Code usando la extensión PlatformIO.
+# IoT
+Este carpeta contiene distintos algoritmos y documentación relacionada al Internet of Things.
 
-### Hardware
-   * [ESP32](https://www.sparkfun.com/products/18035)
-   * [Sensor SHT31](https://www.adafruit.com/product/2857)
-   * Sensor ultrasónico HC-SR04](https://www.sparkfun.com/products/15569)
-   * [Sensor de humedad del suelo](https://www.sparkfun.com/products/13322)
+### Documentación
+   * PDF y Diapositivas explicando lo que es IoT y todo lo relacionado con redes
 
-### Librerías
-   * Librería para el protocolo MQTT [PubSubClient](https://github.com/knolleary/pubsubclient)
-   * Librería para el sensor SHT31 [Adafruit SHT31](https://github.com/adafruit/Adafruit_SHT31)
-   * Librería para la comunicación I2C [Adafruit BusIO](https://github.com/adafruit/Adafruit_BusIO)
+### MQTT
+   * Ejemplos de publicación y subscripción de clientes MQTT en Python y Arduino
 
 
    
